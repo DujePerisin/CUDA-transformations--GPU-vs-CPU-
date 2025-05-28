@@ -1,0 +1,46 @@
+Testirano putem GoogleCollab platforme.
+
+Komande koje se izvode:
+!nvcc -o matrix_mul_2 matrix_mul_2.cu
+!./matrix_mul_2
+
+
+Tekst opisa projekta:
+
+Testiranje se izvodilo na matricama nasumicnih vrijednosti *randomInit* velicine 1024x1024.
+
+Ovo su linije koda koje se alterniraju te pomoću njih testiramo različiti broj threadova po blocku prilikom izvodenja operacija mnozenja i transporiranja matrica: 
+
+
+dim3 threadsPerBlock(8, 8);     // 64 
+dim3 threadsPerBlock(16, 16);   // 256
+dim3 threadsPerBlock(32, 32);   // 1024 
+
+Dobiveni su sljedeci rezultati:
+* 64 threadsPerBlock ->
+
+Zavrseno transponiranje matrice!
+Vrijeme izvodenja transpozicije: 0.008608 ms
+
+Zavrseno mnozenje matrica!
+Vrijeme izvodenja kernela: 7.53923 ms
+
+
+* 256 threadsPerBlock ->
+
+Zavrseno transponiranje matrice!
+Vrijeme izvodenja transpozicije: 0.007776 ms
+
+Zavrseno mnozenje matrica!
+Vrijeme izvodenja kernela: 7.34029 ms
+
+
+* 1024 threadsPerBlock ->
+
+Zavrseno transponiranje matrice!
+Vrijeme izvodenja transpozicije: 0.007616 ms
+
+Zavrseno mnozenje matrica!
+Vrijeme izvodenja kernela: 7.15564 ms
+
+Izvršio bih isti kod 10 puta te zabilježio najbolje vrijeme izvođenja kako bih donekle eliminirao problem "gužve" izvođenja....
